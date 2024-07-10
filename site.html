@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SymtoSCan</title>
+    <script
+      src="https://kit.fontawesome.com/d06cb09b4c.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        font-family: "Arial", sans-serif;
+        color: white;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .logo {
+        color: white;
+        font-weight: 600;
+        font-size: 1.3rem;
+      }
+      .logo i {
+        font-size: 1.5rem;
+      }
+      nav ul,
+      .user ul {
+        display: flex;
+        list-style: none;
+        font-weight: 300;
+      }
 
+      nav ul li,
+      .user ul li {
+        padding: 0 10px;
+      }
+      nav ul li:first-child,
+      .user ul li:first-child {
+        font-weight: 500;
+      }
+
+      header {
+        margin: 30px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+      }
+      .divider-line {
+        border-bottom: 1px solid rgb(229, 229, 229);
+        margin-bottom: 20px;
+      }
+      main {
+        margin: 20px auto;
+        width: 70%;
+      }
+      .pics {
+        width: 50%;
+      }
+
+      .pics-right {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+        gap: 5px;
+        border-radius: 0 20px 20px 0;
+        overflow: hidden;
+      }
+
+      .pics-left img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .pic {
+        flex: 48%;
+        height: 49%;
+      }
+      .pic img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+
+      button:hover{
+        margin: 20px 0 10px 0;
+        width: 110%;
+        height:25%;
+        padding: 13px;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        background-color: tomato;
+        cursor: pointer;
+      }
+
+      footer {
+        background-color: rgb(51, 51, 51);
+      }
+      .footer-text {
+        padding: 20px 0;
+        width: 70%;
+        margin: auto;
+      }
+      .a{
+        position: center;
+        text-shadow: 3px 5px 3px red;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+      
+    </style>
+  </head>
+  <body style="background-color:black;">
+    <header>
+      <div class="logo">
+        <a href="start.html"><p><i class="fa-solid fa-notes-medical"></i> SymtoScan</p></a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#"><strong>Diagnose</strong></a></li>
+          <li><a href="#"><strong>Symptom Relief</strong></a></li>
+          <li><a href="#"><strong>Medication</strong></a></li>
+          <li><a href="#"><strong>About Us</strong></a></li>
+        </ul>
+      </nav>
+      <div>
+        <div class="user">
+        <ul>
+          <li><i class="fa-solid fa-globe"></i></li>
+          <li><i class="fa-solid fa-bars"></i></li>
+          <li><i class="fa-solid fa-user"></i></li>
+
+        </ul>
+        </div>
+        
+      </div>
+    </header>
+    
+
+    </main>
+    <footer>
+      <div class="divider-line"></div>
+      <div class="footer-text">
+        <p><i class="fa-solid fa-copyright"></i> SymtoScan, Inc. H.E.L.P - Privacy - Your Privacy Choices</p>
+      </div>
+    </footer>
+  </body>
+</html>
