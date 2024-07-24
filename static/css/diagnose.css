@@ -1,0 +1,151 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #3F7FAF;
+    background-color: #3F7FAF;
+}
+header {
+    background: #3F7FAF;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+nav {
+    margin: 0;
+    padding: 0;
+    background: #444;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+nav ul li {
+    margin: 0 15px;
+}
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+.main-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+footer {
+    background: #3F7FAF;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+#chat-container {
+    width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 500px; /* Set a fixed height for the chat container */
+}
+#chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background: src('chatbackground.jpg') no-repeat center center; /* Background image */
+    background-size: cover;
+    position: relative;
+}
+#chat-box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2); /* White overlay with 20% opacity */
+    pointer-events: none; /* Allow interactions to pass through */
+}
+#chat-log {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1; /* Ensure messages appear above the overlay */
+}
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 90%;
+    word-wrap: break-word;
+    position: relative;
+    z-index: 1; /* Ensure the messages are above the background image */
+}
+.user-message {
+    background-color: #d4f4fa;
+    align-self: flex-end;
+    padding-left: 50px; /* Space for profile picture */
+    position: relative;
+}
+.user-message::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-color: #FFA500; /* Profile picture color for user */
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+.bot-message {
+    background-color: #f1f1f1;
+    align-self: flex-start;
+    padding-left: 50px; /* Space for profile picture */
+    position: relative;
+}
+.bot-message::before {
+    content: '';
+    width: 30px;
+    height: 30px;
+    background-color: #3F7FAF; /* Profile picture color for bot */
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+#user-input {
+    width: calc(100% - 60px);
+    border: none;
+    padding: 10px;
+    flex-shrink: 0;
+}
+#send-button {
+    width: 60px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+   
