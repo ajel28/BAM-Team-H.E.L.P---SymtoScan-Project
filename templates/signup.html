@@ -1,10 +1,11 @@
-
+<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>signup</title>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <form method="POST">
@@ -31,12 +32,51 @@
                                         <p style="color: red;">{{ error }}</p>
                                     {% endif %}
                                     <div>
-                                        <button type="submit">Send Message</button>
+                                        <button type="submit">Create Account</button>
                                     </div>
                                     <div>
                                         <p>Already have an account? <a href = "{{ url_for('login')}}">Click here!</a></p>
                                     </div>
                                 </div>
                             </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="form-box">
+        <h2>Create Account</h2>
+        <form action="{{ url_for('signup') }}" method="POST">
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="name" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Your Password" required>
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <div class="form-group">
+                <button type="submit">Create Account</button>
+            </div>
+            <div class="link-box">
+                <p>Already have an account? <a href="{{ url_for('login') }}">Click here!</a></p>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

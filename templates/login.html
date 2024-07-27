@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -77,7 +77,6 @@
                {% endif %}
                
                 <div>
-                    <!-- Added margin top to create space between inputs and button -->
                     <button type="submit">Login</button>
                 </div>
                
@@ -88,4 +87,41 @@
         </form>
     </div>
 </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="form-box">
+        <h2>Member Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="form-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="username" id="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            </div>
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+            <div class="link-box">
+                <p>Forgot Password? <a href="#">Click Here</a></p>
+                <a href="{{ url_for('signup') }}" class="btn-register">Register</a>
+            </div>
+        </form>
+    </div>
+</body>
 </html>
+

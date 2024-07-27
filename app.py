@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, session, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
+from ai import getResponse  # Import the getResponse function
 from secret import *
-from openai import AzureOpenAI
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret_key'
@@ -88,46 +88,21 @@ def signup():
         return redirect(url_for('home'))
     return render_template('signup.html')
 
-# Azure OpenAI setup
-ENDPOINT = AZURE_OPENAI_ENDPOINT
-KEY = AZURE_OPENAI_API_KEY
-MODEL = "gpt-35-turbo"
-
-openai_client = AzureOpenAI(
-    api_key=KEY,
-    azure_endpoint=ENDPOINT,
-    api_version="2024-05-01-preview"
-)
-
-def getResponse(prompt, chat_history):
-    messages = [{"role": "system", "content": "You are a helpful assistant"}] + chat_history
-    messages.append({"role": "user", "content": prompt})
-    
-    response = openai_client.chat.completions.create(
-        model=MODEL,
-        messages=messages,
-        max_tokens=100
-    )
-    ai_response = response.choices[0].message.content
-    return ai_response
-
 @app.route('/get_response', methods=['POST'])
 def get_response():
     data = request.json
-    prompt = data.get('prompt', '')
+    user_input = data.get('prompt', '')
 
-    if 'chat_history' not in session:
-        session['chat_history'] = []
+    if 'chat_state' not in session:
+        session['chat_state'] = {}
 
-    chat_history = session['chat_history']
-    ai_response = getResponse(prompt, chat_history)
+    chat_state = session['chat_state']
+    ai_response, new_state = getResponse(chat_state, user_input)
 
-    # Update chat history
-    chat_history.append({"role": "user", "content": prompt})
-    chat_history.append({"role": "assistant", "content": ai_response})
-    session['chat_history'] = chat_history
+    session['chat_state'] = new_state
 
     return jsonify({'response': ai_response})
 
 if __name__ == '__main__':
     app.run(debug=True)
+
