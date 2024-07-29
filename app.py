@@ -39,7 +39,7 @@ def SymptScan():
 def symrelief():
     return render_template('symrelief.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
         username = request.form.get('username')
@@ -60,7 +60,7 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == "POST":
         userName = request.form.get('name')
