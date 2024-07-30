@@ -3,21 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SymtoScan</title>
-    <script
-    src="https://kit.fontawesome.com/d06cb09b4c.js"
-    crossorigin="anonymous"
-  ></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <title>About Us - SymtoScan</title>
+    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +16,7 @@
             margin: 0;
             padding: 0;
             color: #3F7FAF;
-            background-color: #3F7FAF;
+            background-color: #E0F7FA;
         }
         header {
             background: #3F7FAF;
@@ -63,6 +54,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         footer {
             background: #3F7FAF;
@@ -73,11 +65,36 @@
             bottom: 0;
             width: 100%;
         }
+        .about-section {
+            margin-top: 20px;
+        }
+        .about-section h2 {
+            background: #3F7FAF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+        .about-section p {
+            margin: 20px 0;
+        }
+        .about-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        .about-images img {
+            width: calc(25% - 10px);
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i>SymtoScan</h1>
+        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
     </header>
     <nav>
         <ul>
@@ -90,7 +107,18 @@
     </nav>
     <div class="container">
         <div class="main-content">
-            <h2>Welcome to</h2>
+            <div class="about-section">
+                <h2>About SymtoScan</h2>
+                <p><strong>SymtoScan</strong> is an innovative AI chatbot designed to assist users in diagnosing symptoms based on their input. Leveraging advanced artificial intelligence, our chatbot provides quick, accurate, and personalized medical advice, helping users understand their symptoms and seek appropriate care.</p>
+                <p>What sets SymtoScan apart from other companies is our commitment to accuracy and user experience. Our AI model is continuously updated with the latest medical knowledge, ensuring that our users receive the most relevant and up-to-date information. Additionally, our intuitive interface and personalized responses make the diagnostic process seamless and user-friendly.</p>
+                <p>We pride ourselves on offering a tool that not only provides valuable medical insights but also enhances the overall user experience with easy-to-understand feedback and actionable advice.</p>
+                <div class="about-images">
+                    <img src="https://imgs.search.brave.com/X_V5-ndKxllgg2n85A_cRZOFefrfIgYyl93a06GMhho/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTc4/Mjg0ODI1OC9waG90/by90ZWVuYWdlci1h/dC1hLW1lZGljYWwt/YXBwb2ludG1lbnQu/d2VicD9iPTEmcz0x/NzA2NjdhJnc9MCZr/PTIwJmM9eFFSZ3d0/Vl9HUEthcG5uXzd4/YWRmTF9EbkpTbUVP/bk1PZ284TVEtM1Z1/QT0" alt="SymtoScan Feature 1">
+                    <img src="https://imgs.search.brave.com/oubObyCqoEsa17OVSsGkgUOHA7z5oq9IIatD04LpWiU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c3RvY2twaG90b3Nl/Y3JldHMuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDE4LzEx/L2luZ18zMjE5NF8w/Njg3Ni04NDB4Njk2/LmpwZw" alt="SymtoScan Feature 2">
+                    <img src="https://imgs.search.brave.com/ovwL5nWpNw8-ULsiOCjc7VKXQkXilMzlO1kC_MatOlU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/bWVkaWNhbGVjb25v/bWljcy5jb20vX25l/eHQvaW1hZ2U_dXJs/PWh0dHBzOi8vY2Ru/LnNhbml0eS5pby9p/bWFnZXMvMHZ2OG1v/YzYvbWVkZWMvMTU5/OTA3NDY2YWJmMzMx/OGVjNmRjNzk5NzFm/NDA2NjYwYTk3ZjA2/MS0xMjAweDYzMy5q/cGc_Zml0PWNyb3Am/YXV0bz1mb3JtYXQm/dz0zODQwJnE9NzU" alt="SymtoScan Feature 3">
+                    <img src="https://imgs.search.brave.com/IiH81bxqqdFzdWhFpKfoMQzsgSo2gSlxjZ5obTDa_w0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTcy/NjAwMDA5L3Bob3Rv/L2FmcmljYW4tYW1l/cmljYW4tZG9jdG9y/LXRhbGtpbmctdG8t/cGF0aWVudC1pbi1v/ZmZpY2UuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPUxab0tf/dVlrdVlPc21PVlZI/RXEyWHhidERfb3kw/NlBTLVVwWW54ajN2/S0E9" alt="SymtoScan Feature 4">
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
@@ -99,4 +127,5 @@
     </footer>
 </body>
 </html>
-
+ 
+ 

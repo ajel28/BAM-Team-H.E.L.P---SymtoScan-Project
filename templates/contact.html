@@ -4,20 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SymtoScan</title>
-    <script
-    src="https://kit.fontawesome.com/d06cb09b4c.js"
-    crossorigin="anonymous"
-  ></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +16,7 @@
             margin: 0;
             padding: 0;
             color: #3F7FAF;
-            background-color: #3F7FAF;
+            background-color: #E0F7FA;
         }
         header {
             background: #3F7FAF;
@@ -63,6 +54,7 @@
             padding: 20px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         footer {
             background: #3F7FAF;
@@ -73,11 +65,92 @@
             bottom: 0;
             width: 100%;
         }
+        .relief-section {
+            margin-top: 20px;
+        }
+        .relief-category {
+            margin-bottom: 20px;
+        }
+        .relief-category h3 {
+            background: #3F7FAF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+        .relief-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .relief-category ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .relief-category ul li:last-child {
+            border-bottom: none;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form h2 {
+            background: #3F7FAF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+        .contact-form form {
+            margin-top: 10px;
+        }
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .contact-form button {
+            background: #3F7FAF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background: #2e5a8d;
+        }
+        .doctor-box {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 10px;
+        }
+        .doctor-box img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .doctor-box h4 {
+            margin: 10px 0 0;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i>SymtoScan</h1>
+        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
     </header>
     <nav>
         <ul>
@@ -90,8 +163,26 @@
     </nav>
     <div class="container">
         <div class="main-content">
-            <h2>Welcome To SymtoScan</h2>
+            <h2>Welcome To SymtoScan's Contact Page</h2>
+            </div>
+            <div class="contact-form">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or need further assistance, please fill out the form below or call us at <strong>123-456-7890</strong>.</p>
+                <form action="#" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
         </div>
+    </div>
+    <div class="doctor-box">
+        <img src="doctor.jpg" alt="Doctor's Picture">
+        <h4>Dr. Jane Doe</h4>
     </div>
     <script src="script.js"></script>
     <footer>
@@ -99,4 +190,3 @@
     </footer>
 </body>
 </html>
-

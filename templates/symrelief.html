@@ -15,9 +15,6 @@
     rel="stylesheet"
   />
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +22,7 @@
             margin: 0;
             padding: 0;
             color: #3F7FAF;
-            background-color: #3F7FAF;
+            background-color: #E0F7FA; /* Lighter background for better contrast */
         }
         header {
             background: #3F7FAF;
@@ -73,11 +70,36 @@
             bottom: 0;
             width: 100%;
         }
+        .relief-section {
+            margin-top: 20px;
+        }
+        .relief-category {
+            margin-bottom: 20px;
+        }
+        .relief-category h3 {
+            background: #3F7FAF;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0;
+        }
+        .relief-category ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .relief-category ul li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .relief-category ul li:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i>SymtoScan</h1>
+        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
     </header>
     <nav>
         <ul>
@@ -90,7 +112,38 @@
     </nav>
     <div class="container">
         <div class="main-content">
-            <h2>Welcome To SymtoScan</h2>
+            <h2>Welcome To SymtoScan's Relief Page</h2>
+            <div class="relief-section">
+                <h2>Symptom Relief</h2>
+                <div class="relief-category">
+                    <h3>Headache</h3>
+                    <ul>
+                        <li>Stay hydrated with plenty of water.</li>
+                        <li>Apply a cold or warm compress to your forehead.</li>
+                        <li>Rest in a dark, quiet room.</li>
+                        <li>Consider over-the-counter pain relievers.</li>
+                    </ul>
+                </div>
+                <div class="relief-category">
+                    <h3>Back Pain</h3>
+                    <ul>
+                        <li>Apply heat or cold packs to the affected area.</li>
+                        <li>Maintain good posture and use ergonomic chairs.</li>
+                        <li>Perform gentle stretching exercises.</li>
+                        <li>Consult a physical therapist for targeted exercises.</li>
+                    </ul>
+                </div>
+                <div class="relief-category">
+                    <h3>Joint Pain</h3>
+                    <ul>
+                        <li>Engage in low-impact exercises like swimming.</li>
+                        <li>Use supportive braces or wraps.</li>
+                        <li>Apply topical anti-inflammatory creams.</li>
+                        <li>Consider dietary supplements like glucosamine.</li>
+                    </ul>
+                </div>
+                <!-- Add more categories as needed -->
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
@@ -99,4 +152,4 @@
     </footer>
 </body>
 </html>
-
+ 
