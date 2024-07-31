@@ -10,52 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}">
-    <style>
-        /* Add your custom styles here */
-        #print-button, #end-chat-button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #send-button {
-            padding: 15px 25px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #print-button:hover, #end-chat-button:hover {
-            background-color: #0056b3;
-        }
-        #send-button:hover {
-            background-color: #218838;
-        }
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .message {
-            margin: 5px 0;
-        }
-        .user-message {
-            color: blue;
-        }
-        .bot-message {
-            color: green;
-        }
-        .message strong {
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -81,6 +35,8 @@
         </div>
         <form id="chat-form" onsubmit="return false;">
             <input type="text" id="user-input" placeholder="Type a message..." style="width: 100%; padding: 10px;">
+            <button id="mic-button" onclick="toggleRecording()">🎤</button>
+            <span id="countdown">3</span>
         </form>
         <div class="button-container">
             <button id="end-chat-button" onclick="endChat()">End Chat</button>
@@ -91,6 +47,8 @@
     <script>
         const username = "{{ username }}";
         const aiName = "SymtoScan AI";
+        let recognition;
+        let isRecording = false;
 
         window.onload = () => {
             greetUser();
@@ -100,11 +58,12 @@
                     sendMessage();
                 }
             });
+            setupRecognition();
         };
 
         function greetUser() {
             const greetingMessage = `Hello ${username}, how may I assist you today?`;
-            addMessage(greetingMessage, 'bot-message', aiName);
+            addMessage(greetingMessage, 'bot-message', aiName, true);
         }
 
         async function sendMessage() {
@@ -123,7 +82,7 @@
                     if (response.ok) {
                         const data = await response.json();
                         const botResponse = data.response;
-                        addMessage(botResponse, 'bot-message', aiName);
+                        addMessage(botResponse, 'bot-message', aiName, true);
                     } else {
                         addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
                         console.error('Server error:', response.statusText);
@@ -136,15 +95,25 @@
             }
         }
 
-        function addMessage(text, className, sender) {
+        function addMessage(text, className, sender, addSpeakButton = false) {
             const message = document.createElement('div');
             message.className = `message ${className}`;
             message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;  // Use innerHTML to allow HTML formatting
+            
+            if (addSpeakButton) {
+                const speakButton = document.createElement('button');
+                speakButton.className = 'speak-button';
+                speakButton.innerText = 'Speak';
+                speakButton.onclick = () => speakMessage(text);
+                message.appendChild(speakButton);
+            }
+
             document.getElementById('chat-log').appendChild(message);
             document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
         }
 
         async function endChat() {
+            stopSpeaking();
             document.getElementById('chat-log').innerHTML = '';
             try {
                 await fetch('/end_chat', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
@@ -164,6 +133,66 @@
             printWindow.document.write('</div></body></html>');
             printWindow.document.close();
             printWindow.print();
+        }
+
+        function speakMessage(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function stopSpeaking() {
+            window.speechSynthesis.cancel();
+        }
+
+        function setupRecognition() {
+            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            recognition = new window.SpeechRecognition();
+            recognition.interimResults = true;
+            recognition.continuous = false;
+
+            recognition.onresult = (event) => {
+                const transcript = Array.from(event.results)
+                    .map(result => result[0])
+                    .map(result => result.transcript)
+                    .join('');
+                document.getElementById('user-input').value = transcript;
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                document.getElementById('mic-button').textContent = '🎤';
+                document.getElementById('countdown').style.display = 'none';
+            };
+        }
+
+        function toggleRecording() {
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                startCountdown();
+            }
+        }
+
+        function startCountdown() {
+            let countdown = 3;
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.style.display = 'inline';
+            countdownElement.textContent = countdown;
+            const countdownInterval = setInterval(() => {
+                countdown -= 1;
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    startRecognition();
+                } else {
+                    countdownElement.textContent = countdown;
+                }
+            }, 1000);
+        }
+
+        function startRecognition() {
+            isRecording = true;
+            document.getElementById('mic-button').textContent = '🛑';
+            recognition.start();
         }
     </script>
     <footer>

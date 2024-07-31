@@ -148,4 +148,83 @@ footer {
     cursor: pointer;
     flex-shrink: 0;
 }
-   
+
+#print-button, #end-chat-button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#send-button {
+    padding: 15px 25px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#print-button:hover, #end-chat-button:hover {
+    background-color: #0056b3;
+}
+#send-button:hover {
+    background-color: #218838;
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.message {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
+.user-message {
+    color: blue;
+}
+.bot-message {
+    color: green;
+}
+.message strong {
+    font-weight: bold;
+}
+.speak-button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.speak-button:hover {
+    background-color: #e0a800;
+}
+#mic-button {
+    padding: 10px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#mic-button:hover {
+    background-color: #e64a19;
+}
+#countdown {
+    display: none;
+    font-size: 18px;
+    margin-right: 10px;
+}
+@media print {
+    .speak-button {
+        display: none !important;
+    }
+}
