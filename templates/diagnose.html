@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,40 @@
     <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}">
+    <style>
+        /* Add your custom styles here */
+        #print-button, #end-chat-button {
+            margin: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #print-button:hover, #end-chat-button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user-message {
+            color: blue;
+        }
+        .bot-message {
+            color: green;
+        }
+        .message strong {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -38,10 +66,17 @@
         </div>
         <form id="chat-form" onsubmit="return false;">
             <input type="text" id="user-input" placeholder="Type a message...">
-            <button id="send-button">Send</button>   
+            <button id="send-button">Send</button>
         </form>
+        <div class="button-container">
+            <button id="end-chat-button" onclick="endChat()">End Chat</button>
+            <button id="print-button" onclick="printChat()">Print</button>
+        </div>
     </div>
     <script>
+        const username = "{{ username }}";
+        const aiName = "SymtoScan AI";
+
         document.getElementById('send-button').addEventListener('click', () => {
             sendMessage();
         });
@@ -54,36 +89,245 @@
         });
 
         window.onload = () => {
-            const username = "{{ username }}";
-            const greetingMessage = `Hello ${username}, how may I assist you today?`;
-            addMessage(greetingMessage, 'bot-message');
+            greetUser();
         };
+
+        function greetUser() {
+            const greetingMessage = `Hello ${username}, how may I assist you today?`;
+            addMessage(greetingMessage, 'bot-message', aiName);
+        }
 
         async function sendMessage() {
             const userInput = document.getElementById('user-input').value;
             if (userInput.trim() !== "") {
-                addMessage(userInput, 'user-message');
-                const response = await fetch('/get_response', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ prompt: userInput }),
-                });
+                addMessage(userInput, 'user-message', username);
+                try {
+                    const response = await fetch('/get_response', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: userInput }),
+                    });
 
-                const data = await response.json();
-                const botResponse = data.response;
-                addMessage(botResponse, 'bot-message');
+                    if (response.ok) {
+                        const data = await response.json();
+                        const botResponse = data.response;
+                        addMessage(botResponse, 'bot-message', aiName);
+                    } else {
+                        addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
+                        console.error('Server error:', response.statusText);
+                    }
+                } catch (error) {
+                    addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
+                    console.error('Fetch error:', error);
+                }
                 document.getElementById('user-input').value = '';
             }
         }
 
-        function addMessage(text, className) {
+        function addMessage(text, className, sender) {
             const message = document.createElement('div');
             message.className = `message ${className}`;
-            message.innerHTML = text;  // Use innerHTML to allow HTML formatting
+            message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;  // Use innerHTML to allow HTML formatting
             document.getElementById('chat-log').appendChild(message);
             document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
+        }
+
+        async function endChat() {
+            document.getElementById('chat-log').innerHTML = '';
+            try {
+                await fetch('/end_chat', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+            } catch (error) {
+                console.error('End chat error:', error);
+            }
+            greetUser();
+        }
+
+        function printChat() {
+            const cssUrl = "{{ url_for('static', filename='css/diagnose.css') }}";
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Chat History</title>');
+            printWindow.document.write('<link rel="stylesheet" href="' + cssUrl + '"></head><body>');
+            printWindow.document.write('<h1>Chat History</h1><div id="chat-log">');
+            printWindow.document.write(document.getElementById('chat-log').innerHTML);
+            printWindow.document.write('</div></body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+    </script>
+    <footer>
+        <p>&copy; 2024 Team H.E.L.P Website. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SymtoScan</title>
+    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}">
+    <style>
+        /* Add your custom styles here */
+        #print-button, #end-chat-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button {
+            padding: 15px 25px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #print-button:hover, #end-chat-button:hover {
+            background-color: #0056b3;
+        }
+        #send-button:hover {
+            background-color: #218838;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .message {
+            margin: 5px 0;
+        }
+        .user-message {
+            color: blue;
+        }
+        .bot-message {
+            color: green;
+        }
+        .message strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/diagnose">Diagnose</a></li>
+            <li><a href="/symrelief">Symptom Relief</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="main-content">
+            <h2>Welcome To SymtoScan AI Chatbot</h2>
+        </div>
+    </div>
+    <div id="chat-container">
+        <div id="chat-box">
+            <div id="chat-log"></div>
+        </div>
+        <form id="chat-form" onsubmit="return false;">
+            <input type="text" id="user-input" placeholder="Type a message..." style="width: 100%; padding: 10px;">
+        </form>
+        <div class="button-container">
+            <button id="end-chat-button" onclick="endChat()">End Chat</button>
+            <button id="send-button" onclick="sendMessage()">Send</button>
+            <button id="print-button" onclick="printChat()">Print</button>
+        </div>
+    </div>
+    <script>
+        const username = "{{ username }}";
+        const aiName = "SymtoScan AI";
+
+        window.onload = () => {
+            greetUser();
+            document.getElementById('user-input').addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    sendMessage();
+                }
+            });
+        };
+
+        function greetUser() {
+            const greetingMessage = `Hello ${username}, how may I assist you today?`;
+            addMessage(greetingMessage, 'bot-message', aiName);
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() !== "") {
+                addMessage(userInput, 'user-message', username);
+                try {
+                    const response = await fetch('/get_response', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: userInput }),
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const botResponse = data.response;
+                        addMessage(botResponse, 'bot-message', aiName);
+                    } else {
+                        addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
+                        console.error('Server error:', response.statusText);
+                    }
+                } catch (error) {
+                    addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
+                    console.error('Fetch error:', error);
+                }
+                document.getElementById('user-input').value = '';
+            }
+        }
+
+        function addMessage(text, className, sender) {
+            const message = document.createElement('div');
+            message.className = `message ${className}`;
+            message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;  // Use innerHTML to allow HTML formatting
+            document.getElementById('chat-log').appendChild(message);
+            document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
+        }
+
+        async function endChat() {
+            document.getElementById('chat-log').innerHTML = '';
+            try {
+                await fetch('/end_chat', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
+            } catch (error) {
+                console.error('End chat error:', error);
+            }
+            greetUser();
+        }
+
+        function printChat() {
+            const cssUrl = "{{ url_for('static', filename='css/diagnose.css') }}";
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write('<html><head><title>Chat History</title>');
+            printWindow.document.write('<link rel="stylesheet" href="' + cssUrl + '"></head><body>');
+            printWindow.document.write('<h1>Chat History</h1><div id="chat-log">');
+            printWindow.document.write(document.getElementById('chat-log').innerHTML);
+            printWindow.document.write('</div></body></html>');
+            printWindow.document.close();
+            printWindow.print();
         }
     </script>
     <footer>
