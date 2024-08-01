@@ -1,82 +1,138 @@
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>signup</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
-    <form method="POST">
-        <div>
-            <div>
-                <div>
-                    <input type="text" name = "name" class="form-control" id="name" placeholder="Your Name" required>
-                    <label for="name">Your Name</label>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <input name = "email" type="email" class="form-control" id="email" placeholder="Your Email">
-                    <label for="email">Your Email</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div>
-                                            <input name="password" type="password" class="form-control" id="password" placeholder="Password" required>
-                                            <label for="subject">Password</label>
-                                        </div>
-                                    </div>
-                                    {% if error %}
-                                        <p style="color: red;">{{ error }}</p>
-                                    {% endif %}
-                                    <div>
-                                        <button type="submit">Create Account</button>
-                                    </div>
-                                    <div>
-                                        <p>Already have an account? <a href = "{{ url_for('login')}}">Click here!</a></p>
-                                    </div>
-                                </div>
-                            </form>
-</body>
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signup</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>SymtoScan Member Signup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #0450dd, #5699e6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        .form-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            width: 350px;
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            text-align: center;
+        }
+        .form-box h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-box h2 img {
+            margin-right: 10px;
+            height: 48px; /* Adjust this to match the height of the capital S in SymtoScan */
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .form-group i {
+            margin-right: 10px;
+            color: #ffffff;
+        }
+        .form-group input {
+            width: calc(100% - 40px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+        }
+        .form-group input::placeholder {
+            color: #dddddd;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #fd9133;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #a07545;
+        }
+        .link-box {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .link-box p, .link-box a {
+            margin: 0;
+            font-size: 14px;
+            font-weight: bold; /* Make the text bold */
+            color: rgb(255, 255, 255); /* Change the color to black */
+        }
+        .link-box a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .link-box a:hover {
+            color: #a07545;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="form-box">
-        <h2>Create Account</h2>
-        <form action="{{ url_for('signup') }}" method="POST">
-            <div class="form-group">
-                <i class="fas fa-user"></i>
-                <input type="text" name="name" id="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-                <i class="fas fa-envelope"></i>
-                <input type="email" name="email" id="email" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-                <i class="fas fa-lock"></i>
-                <input type="password" name="password" id="password" placeholder="Your Password" required>
-            </div>
-            {% if error %}
-                <p class="error">{{ error }}</p>
-            {% endif %}
-            <div class="form-group">
-                <button type="submit">Create Account</button>
-            </div>
-            <div class="link-box">
-                <p>Already have an account? <a href="{{ url_for('login') }}">Click here!</a></p>
-            </div>
-        </form>
+    <div class="form-container">
+        <div class="form-box">
+            <h2><img src="{{ url_for('static', filename='img/SymtoScanLogo.png') }}" alt="SymtoScan Logo">SymtoScan Member Signup</h2>
+            <form action="{{ url_for('signup') }}" method="POST">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" id="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Your Password" required>
+                </div>
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                <div class="form-group">
+                    <button type="submit">Create Account</button>
+                </div>
+                <div class="link-box">
+                    <p>Already have an account? <a href="{{ url_for('login') }}">Click here!</a></p>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
