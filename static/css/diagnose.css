@@ -149,7 +149,7 @@ footer {
     flex-shrink: 0;
 }
 
-#print-button, #end-chat-button {
+#print-button, #end-chat-button, #new-chat-button {
     padding: 10px;
     background-color: #007bff;
     color: white;
@@ -169,7 +169,7 @@ footer {
     justify-content: center;
     align-items: center;
 }
-#print-button:hover, #end-chat-button:hover {
+#print-button:hover, #end-chat-button:hover, #new-chat-button:hover {
     background-color: #0056b3;
 }
 #send-button:hover {
@@ -179,6 +179,14 @@ footer {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    align-items: center;
+}
+.button-container #mic-button,
+.button-container #send-button,
+.button-container #new-chat-button,
+.button-container #end-chat-button,
+.button-container #print-button {
+    margin-left: 10px;
 }
 .message {
     margin: 5px 0;
@@ -203,6 +211,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .speak-button:hover {
     background-color: #e0a800;
 }

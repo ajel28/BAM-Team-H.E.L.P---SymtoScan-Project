@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -26,55 +26,57 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-            padding: 30px;
-            width: 350px;
+            padding: 45px; /* increased by 50% */
+            width: 525px; /* increased by 50% */
             backdrop-filter: blur(10px);
             color: #ffffff;
             text-align: center;
         }
         .form-box h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: 30px; /* increased by 50% */
+            font-size: 36px; /* increased by 50% */
             color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .form-box h2 img {
-            margin-right: 10px;
-            height: 24px; /* Adjust this to match the height of the capital S in SymtoScan */
+            margin-right: 15px; /* increased by 50% */
+            height: 60px; /* increased by 50% */
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 30px; /* increased by 50% */
             display: flex;
             align-items: center;
         }
         .form-group i {
-            margin-right: 10px;
+            margin-right: 15px; /* increased by 50% */
             color: #ffffff;
+            font-size: 24px; /* increased by 50% */
         }
         .form-group input {
-            width: calc(100% - 40px);
-            padding: 10px;
+            width: calc(100% - 60px); /* adjusted for increased icon size */
+            padding: 15px; /* increased by 50% */
             border: 1px solid #ccc;
-            border-radius: 4px;
+            border-radius: 6px; /* increased by 50% */
             box-sizing: border-box;
             background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
             border: none;
+            font-size: 18px; /* increased by 50% */
         }
         .form-group input::placeholder {
             color: #dddddd;
         }
         .form-group button {
             width: 100%;
-            padding: 10px;
+            padding: 15px; /* increased by 50% */
             background-color: #fd9133;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px; /* increased by 50% */
             cursor: pointer;
-            font-size: 16px;
+            font-size: 24px; /* increased by 50% */
             font-weight: bold;
             transition: background-color 0.3s;
         }
@@ -83,13 +85,13 @@
         }
         .link-box {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 30px; /* increased by 50% */
         }
         .link-box p, .link-box a {
             margin: 0;
-            font-size: 14px;
-            font-weight: bold; /* Make the text bold */
-            color: rgb(255, 255, 255); /* Change the color to black */
+            font-size: 21px; /* increased by 50% */
+            font-weight: bold;
+            color: rgb(255, 255, 255);
         }
         .link-box a {
             color: #000000;
@@ -102,6 +104,7 @@
         .error {
             color: red;
             text-align: center;
+            font-size: 18px; /* increased by 50% */
         }
     </style>
 </head>
@@ -126,7 +129,148 @@
                 </div>
                 <div class="link-box">
                     <p>Forgot Password? <a href="#">Click Here</a></p>
-                    <P>Don't have an account? <a href="{{ url_for('signup') }}" class="btn-register">Register</a></P>
+                    <p>Don't have an account? <a href="{{ url_for('signup') }}" class="btn-register">Register</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SymtoScan Member Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #0450dd, #5699e6), url("{{ url_for('static', filename='img/AIDoctor.jpg') }}");
+            background-size: cover;
+            background-blend-mode: overlay;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+        .form-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            padding: 45px; /* increased by 50% */
+            width: 525px; /* increased by 50% */
+            backdrop-filter: blur(35px);
+            color: #ffffff;
+            text-align: center;
+        }
+        .form-box h2 {
+            margin-bottom: 30px; /* increased by 50% */
+            font-size: 36px; /* increased by 50% */
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-box h2 img {
+            margin-right: 15px; /* increased by 50% */
+            height: 60px; /* increased by 50% */
+        }
+        .form-group {
+            margin-bottom: 30px; /* increased by 50% */
+            display: flex;
+            align-items: center;
+        }
+        .form-group i {
+            margin-right: 15px; /* increased by 50% */
+            color: #ffffff;
+            font-size: 24px; /* increased by 50% */
+        }
+        .form-group input {
+            width: calc(100% - 60px); /* adjusted for increased icon size */
+            padding: 15px; /* increased by 50% */
+            border: 1px solid #ccc;
+            border-radius: 6px; /* increased by 50% */
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: none;
+            font-size: 18px; /* increased by 50% */
+        }
+        .form-group input::placeholder {
+            color: #dddddd;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 15px; /* increased by 50% */
+            background-color: #fd9133;
+            color: white;
+            border: none;
+            border-radius: 6px; /* increased by 50% */
+            cursor: pointer;
+            font-size: 24px; /* increased by 50% */
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #a07545;
+        }
+        .link-box {
+            text-align: center;
+            margin-top: 30px; /* increased by 50% */
+        }
+        .link-box p, .link-box a {
+            margin: 0;
+            font-size: 21px; /* increased by 50% */
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+        .link-box a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .link-box a:hover {
+            color: #a07545;
+        }
+        .error {
+            color: red;
+            text-align: center;
+            font-size: 18px; /* increased by 50% */
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box">
+            <h2><img src="{{ url_for('static', filename='img/SymtoScanLogo.png') }}" alt="SymtoScan Logo">SymtoScan Member Login</h2>
+            <form action="{{ url_for('login') }}" method="POST">
+                <div class="form-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                {% if error %}
+                    <p class="error">{{ error }}</p>
+                {% endif %}
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+                <div class="link-box">
+                    <p>Forgot Password? <a href="#">Click Here</a></p>
+                    <p>Don't have an account? <a href="{{ url_for('signup') }}" class="btn-register">Register</a></p>
                 </div>
             </form>
         </div>
