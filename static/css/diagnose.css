@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     color: #3F7FAF;
-    background-color: #3F7FAF;
+    background-color: #E0F7FA;
 }
 header {
     background: #3F7FAF;
@@ -63,7 +63,7 @@ footer {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 500px; /* Set a fixed height for the chat container */
+    height: 600px; /* Set a fixed height for the chat container */
 }
 #chat-box {
     flex: 1;
