@@ -220,6 +220,29 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
         }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #3F7FAF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 60px;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .floating-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -257,6 +280,7 @@
     <footer>
         <p>&copy; 2024 SymtoScan. All Rights Reserved.</p>
     </footer>
+    <a href="/diagnose" class="floating-button">Talk to Sarah</a>
 </body>
 </html>
  
