@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,245 +9,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dekko&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css')}}"
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='img/SymtoScanLogoPNG.png') }}" alt="SymtoScan Logo" style="height: 120px; vertical-align: middle; margin-right: 10px;">
+            SymtoScan
+        </h1>
     </header>
     <nav>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/about"><i class="fa-solid fa-people-group"></i> About</a></li>
+            <li><a href="/diagnose"><i class="fa-solid fa-comment-medical"></i> Diagnose</a></li>
+            <li><a href="/symrelief"><i class="fa-solid fa-heart-pulse"></i> Symptom Relief</a></li>
+            <li><a href="/contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
         </ul>
     </nav>
+    {% block Navigation %}
+    {% endblock%}
     <div class="container">
         <div class="main-content">
-            <h2>Welcome To SymtoScan AI Chatbot</h2>
-        </div>
-    </div>
-    <div id="chat-container">
-        <div id="chat-box">
-            <div id="chat-log"></div>
-        </div>
-        <form id="chat-form" onsubmit="return false;">
-            <input type="text" id="user-input" placeholder="Type a message..." style="width: 100%; padding: 10px;">
-            <button id="send-button" onclick="sendMessage()">Send</button>
-            <button id="mic-button" onclick="toggleRecording()">🎤</button>
-            <span id="countdown">3</span>
-            <select id="language-select" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-            </select>
-        </form>
-        <div class="button-container">
-            <button id="new-chat-button" onclick="startNewChat()">Create New Chat</button>
-            <button id="end-chat-button" onclick="endChat()">End Chat</button>
-            <button id="print-button" onclick="printChat()">Print</button>
-        </div>
-    </div>
-    <script>
-        const username = "{{ username }}";
-        const aiName = "Sarah (AI)";
-        let recognition;
-        let isRecording = false;
-        let selectedLanguage = 'en'; // Default to English
-
-        window.onload = () => {
-            greetUser();
-            document.getElementById('user-input').addEventListener('keypress', (event) => {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    sendMessage();
-                }
-            });
-            setupRecognition();
-        };
-
-        function greetUser() {
-            const greetingMessage = `Hello ${username}, how may I assist you today?`;
-            addMessage(greetingMessage, 'bot-message', aiName, true);
-        }
-
-        async function sendMessage() {
-            const userInput = document.getElementById('user-input').value;
-            if (userInput.trim() !== "") {
-                addMessage(userInput, 'user-message', username);
-                try {
-                    const response = await fetch('/get_response', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ prompt: userInput, language: selectedLanguage }),
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        const botResponse = data.response;
-                        addMessage(botResponse, 'bot-message', aiName, true);
-                    } else {
-                        addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
-                        console.error('Server error:', response.statusText);
-                    }
-                } catch (error) {
-                    addMessage("Error: Unable to get response from server.", 'bot-message', aiName);
-                    console.error('Fetch error:', error);
-                }
-                document.getElementById('user-input').value = '';
-            }
-        }
-
-        function addMessage(text, className, sender, addSpeakButton = false) {
-            const message = document.createElement('div');
-            message.className = `message ${className}`;
-            message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;  // Use innerHTML to allow HTML formatting
-            
-            if (addSpeakButton) {
-                const speakButton = document.createElement('button');
-                speakButton.className = 'speak-button';
-                speakButton.innerText = 'Speak';
-                speakButton.onclick = () => speakMessage(text);
-                message.appendChild(speakButton);
-            }
-
-            document.getElementById('chat-log').appendChild(message);
-            document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
-        }
-
-        async function endChat() {
-            stopSpeaking();
-            document.getElementById('chat-log').innerHTML = '';
-            try {
-                await fetch('/end_chat', { method: 'POST', headers: { 'Content-Type': 'application/json' } });
-            } catch (error) {
-                console.error('End chat error:', error);
-            }
-            addMessage("Successfully ended chat", 'system-message');
-        }
-
-        function startNewChat() {
-            stopSpeaking();
-            document.getElementById('chat-log').innerHTML = '';
-            greetUser();
-        }
-
-        function printChat() {
-            const cssUrl = "{{ url_for('static', filename='css/diagnose.css') }}";
-            const printWindow = window.open('', '_blank');
-            printWindow.document.write('<html><head><title>Chat History</title>');
-            printWindow.document.write('<link rel="stylesheet" href="' + cssUrl + '"></head><body>');
-            printWindow.document.write('<h1>Chat History</h1><div id="chat-log">');
-            printWindow.document.write(document.getElementById('chat-log').innerHTML);
-            printWindow.document.write('</div></body></html>');
-            printWindow.document.close();
-            printWindow.print();
-        }
-
-        function speakMessage(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            window.speechSynthesis.speak(utterance);
-        }
-
-        function stopSpeaking() {
-            window.speechSynthesis.cancel();
-        }
-
-        function setupRecognition() {
-            window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            recognition = new window.SpeechRecognition();
-            recognition.interimResults = true;
-            recognition.continuous = false;
-
-            recognition.onresult = (event) => {
-                const transcript = Array.from(event.results)
-                    .map(result => result[0])
-                    .map(result => result.transcript)
-                    .join('');
-                document.getElementById('user-input').value = transcript;
-            };
-
-            recognition.onend = () => {
-                isRecording = false;
-                document.getElementById('mic-button').textContent = '🎤';
-                document.getElementById('countdown').style.display = 'none';
-            };
-        }
-
-        function toggleRecording() {
-            if (isRecording) {
-                recognition.stop();
-            } else {
-                startCountdown();
-            }
-        }
-
-        function startCountdown() {
-            let countdown = 3;
-            const countdownElement = document.getElementById('countdown');
-            countdownElement.style.display = 'inline';
-            countdownElement.textContent = countdown;
-            const countdownInterval = setInterval(() => {
-                countdown -= 1;
-                if (countdown <= 0) {
-                    clearInterval(countdownInterval);
-                    startRecognition();
-                } else {
-                    countdownElement.textContent = countdown;
-                }
-            }, 1000);
-        }
-
-        function startRecognition() {
-            isRecording = true;
-            document.getElementById('mic-button').textContent = '🛑';
-            recognition.start();
-        }
-
-        function changeLanguage() {
-            selectedLanguage = document.getElementById('language-select').value;
-        }
-    </script>
-    <footer>
-        <p>&copy; 2024 Team H.E.L.P Website. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
- -->
-
- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SymtoScan</title>
-    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/diagnose.css') }}">
-</head>
-<body>
-    <header>
-        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <div class="main-content">
-            <h2>Welcome To SymtoScan AI Chatbot</h2>
+            <h2>Welcome To Sara</h2>
+            <h3>(SymtoScan Automated Response Agent)</h3>
         </div>
     </div>
     <div id="chat-container">
@@ -260,17 +47,20 @@
         <div class="button-container">
             <button id="send-button" onclick="sendMessage()">Send</button>
             <button id="mic-button" onclick="toggleRecording()">🎤</button>
+            <span id="countdown">3</span>
             <button id="new-chat-button" onclick="createNewChat()">Create New Chat</button>
             <button id="end-chat-button" onclick="endChat()">End Chat</button>
             <button id="print-button" onclick="printChat()">Print</button>
-            <span id="countdown">3</span>
         </div>
     </div>
+    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
     <script>
         const username = "{{ username }}";
         const aiName = "Sara (AI)";
         let recognition;
         let isRecording = false;
+        let speech = new SpeechSynthesisUtterance();
+        let voices = [];
 
         window.onload = () => {
             greetUser();
@@ -282,6 +72,7 @@
             });
             setupRecognition();
         };
+
 
         function greetUser() {
             const greetingMessage = `Hello ${username}, how may I assist you today?`;
@@ -318,21 +109,31 @@
         }
 
         function addMessage(text, className, sender, addSpeakButton = false) {
-            const message = document.createElement('div');
-            message.className = `message ${className}`;
-            message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;  // Use innerHTML to allow HTML formatting
-            
-            if (addSpeakButton) {
-                const speakButton = document.createElement('button');
-                speakButton.className = 'speak-button';
-                speakButton.innerText = 'Speak';
-                speakButton.onclick = () => speakMessage(text);
-                message.appendChild(speakButton);
-            }
+    const message = document.createElement('div');
+    message.className = `message ${className}`;
+    
+    if (className === 'bot-message') {
+        message.innerHTML = `
+            <img src="{{ url_for('static', filename='img/SaraPic.jpg') }}" alt="Sara" style="width: 30px; height: 30px; border-radius: 50%; margin-right: 10px;">
+            <strong>${sender}:</strong>&nbsp;${text}
+        `;
+    } else {
+        message.innerHTML = `<strong>${sender}:</strong>&nbsp;${text}`;
+    }
 
-            document.getElementById('chat-log').appendChild(message);
-            document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
-        }
+    if (addSpeakButton) {
+        const speakButton = document.createElement('button');
+        speakButton.className = 'speak-button';
+        speakButton.innerHTML = '<i class="fa-solid fa-microphone"></i>'; // Mic icon
+        speakButton.onclick = () => speakMessage(text); // Call the function to speak the message
+        message.appendChild(speakButton);
+    }
+
+    document.getElementById('chat-log').appendChild(message);
+    document.getElementById('chat-log').scrollTop = document.getElementById('chat-log').scrollHeight;
+}
+
+
 
         async function endChat() {
             stopSpeaking();
@@ -385,14 +186,40 @@
             printWindow.print();
         }
 
-        function speakMessage(text) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            window.speechSynthesis.speak(utterance);
+        
+    // function to initialize the voices
+    function initVoices() {
+        const synth = window.speechSynthesis;
+        const voices = synth.getVoices();
+
+        // Find the desired voice using its voiceURI
+        selectedVoice = voices.find(voice => voice.voiceURI === "Microsoft Jenny Online (Natural) - English (United States)");
+
+        if (!selectedVoice) {
+            console.error("Desired voice not found. Using default voice.");
+        }
+    }
+
+    // Initialize voices once they are loaded
+    window.speechSynthesis.onvoiceschanged = initVoices;
+
+    // Function to speak a message
+    function speakMessage(text) {
+        if (!selectedVoice) {
+            console.error("Voice not initialized. Cannot speak.");
+            return;
         }
 
-        function stopSpeaking() {
-            window.speechSynthesis.cancel();
-        }
+        const synth = window.speechSynthesis;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.voice = selectedVoice;
+        synth.speak(utterance);
+    }
+
+    // Function to stop speaking
+    function stopSpeaking() {
+        window.speechSynthesis.cancel();
+    }
 
         function setupRecognition() {
             window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;

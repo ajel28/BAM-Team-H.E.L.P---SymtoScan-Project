@@ -26,6 +26,7 @@ header img {
     vertical-align: middle; /* Aligns the logo vertically with the text */
     margin-right: 10px; /* Space between the logo and the text */
 }
+
 nav {
     margin: 0;
     padding: 10px 0;
@@ -57,8 +58,6 @@ nav ul li a:hover {
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
-    text-align: center;
-
 }
 .main-content {
     background: #fff;
@@ -67,21 +66,6 @@ nav ul li a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     position: relative;
     font-size: 145%;
-}
-.hero {
-    background: #3F7FAF;
-    color: #fff;
-    padding: 40px 20px;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 20px;
-}
-.hero h2 {
-    font-size: 2.5em;
-    margin: 0;
-}
-.hero p {
-    font-size: 1.2em;
 }
 footer {
     background: #3F7FAF;
@@ -92,39 +76,33 @@ footer {
     bottom: 0;
     width: 100%;
 }
-.doctor-box {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 150px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.about-section {
+    margin-top: 20px;
+}
+.about-section h2 {
+    background: #3F7FAF;
+    color: #fff;
     padding: 10px;
+    border-radius: 5px;
+    margin: 0;
 }
-.doctor-box img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+.about-section p {
+    margin: 20px 0;
 }
-.doctor-box h4 {
-    margin: 10px 0 0;
-}
-.gallery {
+.about-images {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
 }
-.gallery img {
-    max-width: 100%;
+.about-images img {
+    width: calc(25% - 10px);
     height: auto;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+h2{
+    text-align: center;
 }
 .floating-button-container {
     position: fixed;

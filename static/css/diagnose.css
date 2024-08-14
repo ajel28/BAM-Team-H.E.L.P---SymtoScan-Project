@@ -5,17 +5,33 @@ body {
     padding: 0;
     color: #3F7FAF;
     background-color: #E0F7FA;
+    font-family: 'Dekko', sans-serif; /* Apply Dekko font */
 }
+
 header {
-    background: #3F7FAF;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
+    background: #3F7FAF; /* Background color of the header */
+    padding: 30px 0; /* Padding to ensure consistent header height */
+    text-align: center; /* Center align the content */
+    color: #fff; /* Text color */
+}
+
+header h1 {
+    font-size: 72px; /* Adjust this value to increase or decrease the text size */
+    margin: 0; /* Remove any default margin */
+    display: inline-block; /* Keep text and image on the same line */
+    vertical-align: middle; /* Vertically align the text with the logo */
+}
+
+header img {
+    height: 120px; /* Keeps the logo height fixed */
+    vertical-align: middle; /* Aligns the logo vertically with the text */
+    margin-right: 10px; /* Space between the logo and the text */
 }
 nav {
     margin: 0;
-    padding: 0;
+    padding: 10px 0;
     background: #444;
+    font-size: 160%;
 }
 nav ul {
     list-style: none;
@@ -25,13 +41,19 @@ nav ul {
     justify-content: center;
 }
 nav ul li {
-    margin: 0 15px;
+    margin: 0 35px;
 }
 nav ul li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
+
+nav ul li a:hover {
+    color: #3F7FAF;
+}
+
 .container {
     max-width: 1200px;
     margin: 20px auto;
@@ -40,9 +62,10 @@ nav ul li a {
 }
 .main-content {
     background: #fff;
-    padding: 20px;
+    padding: 2.5px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 145%;
 }
 footer {
     background: #3F7FAF;
@@ -107,11 +130,13 @@ footer {
     align-self: flex-end;
     padding-left: 50px; /* Space for profile picture */
     position: relative;
+    font-family: 'Dekko', sans-serif; /* Apply Dekko font */
+    font-size: 140%;
 }
 .user-message::before {
     content: '';
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     background-color: #FFA500; /* Profile picture color for user */
     border-radius: 50%;
     position: absolute;
@@ -121,18 +146,20 @@ footer {
 .bot-message {
     background-color: #f1f1f1;
     align-self: flex-start;
-    padding-left: 50px; /* Space for profile picture */
+    /* padding-left: 50px;  */
     position: relative;
+    font-family: 'Dekko', sans-serif; /* Apply Dekko font */
+    font-size: 140%;
 }
 .bot-message::before {
     content: '';
-    width: 30px;
-    height: 30px;
-    background-color: #3F7FAF; /* Profile picture color for bot */
-    border-radius: 50%;
-    position: absolute;
-    left: 10px;
-    top: 10px;
+    /* width: 35px; */
+    /* height: 35px; */
+    /* background-color: #3F7FAF;  */
+    /* border-radius: 50%;
+    position: absolute; */
+    /* left: 10px;
+    top: 10px; */
 }
 #user-input {
     width: calc(100% - 60px);
@@ -236,4 +263,12 @@ footer {
     .speak-button {
         display: none !important;
     }
+}
+
+.main-content h2 {
+    margin-bottom: 2px; /* Adjust this value to reduce or increase the gap */
+}
+
+.main-content h3 {
+    margin-top: 0; /* Remove the top margin */
 }

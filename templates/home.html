@@ -1,110 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SymtoScan</title>
-    <script
-    src="https://kit.fontawesome.com/d06cb09b4c.js"
-    crossorigin="anonymous"
-  ></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #3F7FAF;
-            background-color: #3F7FAF;
-        }
-        header {
-            background: #3F7FAF;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            margin: 0;
-            padding: 0;
-            background: #444;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .main-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background: #3F7FAF;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1><i class="fa-solid fa-notes-medical"></i>SymtoScan</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
-        </ul>
-    </nav>
-    <div class="container">
-        <div class="main-content">
-            <h2>Welcome To SymtoScan</h2>
-            {% if session.username %}
-            {{ session.username|capitalize }}
-            {% endif%}
-        </div>
-    </div>
-    <script src="script.js"></script>
-    <footer>
-        <p>&copy; 2024 Team H.E.L.P Website. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
- -->
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -113,149 +7,26 @@
     <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #3F7FAF;
-            background-color: #E0F7FA;
-        }
-        header {
-            background: #3F7FAF;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            margin: 0;
-            padding: 0;
-            background: #444;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .main-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .hero {
-            background: #3F7FAF;
-            color: #fff;
-            padding: 40px 20px;
-            border-radius: 5px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .hero h2 {
-            font-size: 2.5em;
-            margin: 0;
-        }
-        .hero p {
-            font-size: 1.2em;
-        }
-        footer {
-            background: #3F7FAF;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        .doctor-box {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 150px;
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 10px;
-        }
-        .doctor-box img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .doctor-box h4 {
-            margin: 10px 0 0;
-        }
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-        .gallery img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-        .floating-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #3F7FAF;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            font-size: 16px;
-            line-height: 60px;
-            text-decoration: none;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .floating-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Dekko&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css')}}">
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='img/SymtoScanLogoPNG.png') }}" alt="SymtoScan Logo" style="height: 120px; vertical-align: middle; margin-right: 10px;">
+            SymtoScan
+        </h1>
     </header>
     <nav>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/about"><i class="fa-solid fa-people-group"></i> About</a></li>
+            <li><a href="/diagnose"><i class="fa-solid fa-comment-medical"></i> Diagnose</a></li>
+            <li><a href="/symrelief"><i class="fa-solid fa-heart-pulse"></i> Symptom Relief</a></li>
+            <li><a href="/contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -280,7 +51,12 @@
     <footer>
         <p>&copy; 2024 SymtoScan. All Rights Reserved.</p>
     </footer>
-    <a href="/diagnose" class="floating-button">Talk to Sarah</a>
+    <div class="floating-button-container">
+        <span class="floating-button-text">Talk to Sara</span>
+        <a href="/diagnose" class="floating-button">
+            <img src="{{ url_for('static', filename='img/SaraPic.jpg') }}" alt="Sara" class="floating-button-image">
+        </a>
+    </div>       
 </body>
 </html>
  

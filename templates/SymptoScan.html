@@ -77,15 +77,18 @@
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i>SymtoScan</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='img/SymtoScanLogoPNG.png') }}" alt="SymtoScan Logo" style="height: 120px; vertical-align: middle; margin-right: 10px;">
+            SymtoScan
+        </h1>
     </header>
     <nav>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/about"><i class="fa-solid fa-people-group"></i> About</a></li>
+            <li><a href="/diagnose"><i class="fa-solid fa-comment-medical"></i> Diagnose</a></li>
+            <li><a href="/symrelief"><i class="fa-solid fa-heart-pulse"></i> Symptom Relief</a></li>
+            <li><a href="/contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
         </ul>
     </nav>
     <div class="container">
@@ -96,5 +99,11 @@
     <footer>
         <p>&copy; 2024 Team H.E.L.P Website. All Rights Reserved.</p>
     </footer>
+    <div class="floating-button-container">
+        <span class="floating-button-text">Talk to Sara</span>
+        <a href="/diagnose" class="floating-button">
+            <img src="{{ url_for('static', filename='img/SaraPic.jpg') }}" alt="Sara" class="floating-button-image">
+        </a>
+    </div> 
 </body>
 </html>

@@ -101,7 +101,6 @@ def signup():
 def get_response():
     data = request.json
     user_input = data.get('prompt', '')
-    language = data.get('language', 'en')  # Default to English if no language is provided
 
     logging.debug(f"Received user input: {user_input}")
 
@@ -110,7 +109,7 @@ def get_response():
             session['chat_state'] = {"step": "start"}
 
         chat_state = session['chat_state']
-        ai_response, new_state = getResponse(chat_state, user_input, language)
+        ai_response, new_state = getResponse(chat_state, user_input)
 
         session['chat_state'] = new_state
 
@@ -125,6 +124,11 @@ def get_response():
 def end_chat():
     session.pop('chat_state', None)
     return jsonify({'message': 'Chat ended'})
+
+
+@app.route('/Navigation')
+def Navagation():
+    return render_template('Navigation.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

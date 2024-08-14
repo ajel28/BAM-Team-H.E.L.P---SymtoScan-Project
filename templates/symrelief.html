@@ -4,152 +4,129 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SymtoScan</title>
-    <script
-    src="https://kit.fontawesome.com/d06cb09b4c.js"
-    crossorigin="anonymous"
-  ></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            color: #3F7FAF;
-            background-color: #E0F7FA; /* Lighter background for better contrast */
-        }
-        header {
-            background: #3F7FAF;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            margin: 0;
-            padding: 0;
-            background: #444;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-        .main-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background: #3F7FAF;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        .relief-section {
-            margin-top: 20px;
-        }
-        .relief-category {
-            margin-bottom: 20px;
-        }
-        .relief-category h3 {
-            background: #3F7FAF;
-            color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 0;
-        }
-        .relief-category ul {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0;
-        }
-        .relief-category ul li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-        .relief-category ul li:last-child {
-            border-bottom: none;
-        }
-    </style>
+    <script src="https://kit.fontawesome.com/d06cb09b4c.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dekko&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/symrelief.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css')}}">
 </head>
 <body>
     <header>
-        <h1><i class="fa-solid fa-notes-medical"></i> SymtoScan</h1>
+        <h1>
+            <img src="{{ url_for('static', filename='img/SymtoScanLogoPNG.png') }}" alt="SymtoScan Logo" style="height: 120px; vertical-align: middle; margin-right: 10px;">
+            SymtoScan
+        </h1>
     </header>
     <nav>
         <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/diagnose">Diagnose</a></li>
-            <li><a href="/symrelief">Symptom Relief</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li><a href="/home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/about"><i class="fa-solid fa-people-group"></i> About</a></li>
+            <li><a href="/diagnose"><i class="fa-solid fa-comment-medical"></i> Diagnose</a></li>
+            <li><a href="/symrelief"><i class="fa-solid fa-heart-pulse"></i> Symptom Relief</a></li>
+            <li><a href="/contact"><i class="fa-solid fa-phone"></i> Contact</a></li>
         </ul>
     </nav>
     <div class="container">
         <div class="main-content">
             <h2>Welcome To SymtoScan's Relief Page</h2>
+
+            <div class="button-container">
+                <a href="#head">Head</a>
+                <a href="#arm">Arm</a>
+                <a href="#leg">Leg</a>
+                <a href="#stomach">Stomach</a>
+                <a href="#chest">Chest</a>
+                <a href="#general">General</a>
+            </div>
+
             <div class="relief-section">
                 <h2>Symptom Relief</h2>
-                <div class="relief-category">
-                    <h3>Headache</h3>
+                <!-- Head Section -->
+                <div id="head" class="relief-category">
+                    <h3>Headache and Migraine</h3>
                     <ul>
-                        <li>Stay hydrated with plenty of water.</li>
-                        <li>Apply a cold or warm compress to your forehead.</li>
-                        <li>Rest in a dark, quiet room.</li>
-                        <li>Consider over-the-counter pain relievers.</li>
+                        <li><span>Stay Hydrated:</span> Dehydration is a common trigger for headaches. Drink plenty of water.</li>
+                        <li><span>Apply a Cold or Warm Compress:</span> A cold compress can numb the pain, while a warm compress can relax tense muscles.</li>
+                        <li><span>Rest in a Dark, Quiet Room:</span> Bright lights and loud noises can exacerbate headaches, especially migraines.</li>
+                        <li><span>Over-the-Counter Pain Relief:</span> Medications like ibuprofen or acetaminophen can help alleviate pain.</li>
+                        <li><span>Avoid Triggers:</span> Common triggers include stress, certain foods, and lack of sleep. Identify and avoid these triggers.</li>
                     </ul>
                 </div>
-                <div class="relief-category">
-                    <h3>Back Pain</h3>
+
+                <!-- Arm Section -->
+                <div id="arm" class="relief-category">
+                    <h3>Arm Pain and Discomfort</h3>
                     <ul>
-                        <li>Apply heat or cold packs to the affected area.</li>
-                        <li>Maintain good posture and use ergonomic chairs.</li>
-                        <li>Perform gentle stretching exercises.</li>
-                        <li>Consult a physical therapist for targeted exercises.</li>
+                        <li><span>Rest and Avoid Strain:</span> Rest the arm and avoid heavy lifting or repetitive motions that may have caused the pain.</li>
+                        <li><span>Ice the Area:</span> Apply an ice pack for 15-20 minutes every few hours to reduce inflammation.</li>
+                        <li><span>Compression:</span> Use an elastic bandage to help reduce swelling and provide support.</li>
+                        <li><span>Elevation:</span> Keep your arm elevated above heart level to reduce swelling.</li>
+                        <li><span>Stretching and Strengthening Exercises:</span> Gentle stretching and strengthening exercises can help if pain is related to muscle or joint issues.</li>
                     </ul>
                 </div>
-                <div class="relief-category">
-                    <h3>Joint Pain</h3>
+
+                <!-- Leg Section -->
+                <div id="leg" class="relief-category">
+                    <h3>Leg Pain and Cramps</h3>
                     <ul>
-                        <li>Engage in low-impact exercises like swimming.</li>
-                        <li>Use supportive braces or wraps.</li>
-                        <li>Apply topical anti-inflammatory creams.</li>
-                        <li>Consider dietary supplements like glucosamine.</li>
+                        <li><span>Stay Active:</span> Regular physical activity can improve circulation and reduce muscle stiffness.</li>
+                        <li><span>Elevate Your Legs:</span> Elevating your legs can help reduce swelling, especially after standing for long periods.</li>
+                        <li><span>Stretch Before and After Activity:</span> Stretching can prevent cramps and muscle strain.</li>
+                        <li><span>Massage the Affected Area:</span> Gently massage the cramped or painful muscle to relieve tension.</li>
+                        <li><span>Proper Footwear:</span> Wear shoes that provide proper support, especially if standing or walking for extended periods.</li>
                     </ul>
                 </div>
-                <!-- Add more categories as needed -->
+
+                <!-- Stomach Section -->
+                <div id="stomach" class="relief-category">
+                    <h3>Stomach Pain and Digestive Issues</h3>
+                    <ul>
+                        <li><span>Stay Hydrated:</span> Drink plenty of water, especially if you have symptoms like diarrhea or vomiting.</li>
+                        <li><span>Avoid Heavy, Spicy Foods:</span> Stick to bland, easy-to-digest foods like bananas, rice, applesauce, and toast (BRAT diet).</li>
+                        <li><span>Consider Probiotics:</span> Probiotic supplements or yogurt with live cultures can help restore gut balance.</li>
+                        <li><span>Herbal Remedies:</span> Ginger and peppermint tea can soothe digestive discomfort and reduce nausea.</li>
+                        <li><span>Consult a Doctor:</span> Persistent or severe stomach pain may require professional evaluation, especially if accompanied by other symptoms.</li>
+                    </ul>
+                </div>
+
+                <!-- Chest Section -->
+                <div id="chest" class="relief-category">
+                    <h3>Chest Pain and Discomfort</h3>
+                    <ul>
+                        <li><span>Rule Out Serious Causes:</span> If chest pain is severe or accompanied by symptoms like shortness of breath or dizziness, seek immediate medical attention.</li>
+                        <li><span>Manage Stress:</span> Stress and anxiety can cause chest pain. Practice relaxation techniques like deep breathing or meditation.</li>
+                        <li><span>Over-the-Counter Antacids:</span> If chest pain is related to heartburn or acid reflux, antacids may provide relief.</li>
+                        <li><span>Avoid Heavy Meals:</span> Eating smaller, more frequent meals can reduce the likelihood of acid reflux.</li>
+                        <li><span>Stay Upright After Eating:</span> Avoid lying down immediately after eating to prevent acid from backing up into the esophagus.</li>
+                    </ul>
+                </div>
+
+                <!-- General Section -->
+                <div id="general" class="relief-category">
+                    <h3>General Health and Well-being</h3>
+                    <ul>
+                        <li><span>Maintain a Balanced Diet:</span> Eating a variety of fruits, vegetables, lean proteins, and whole grains supports overall health.</li>
+                        <li><span>Regular Exercise:</span> Engage in at least 30 minutes of moderate exercise most days of the week.</li>
+                        <li><span>Stress Management:</span> Practice stress-relief techniques like yoga, meditation, or deep breathing exercises.</li>
+                        <li><span>Adequate Sleep:</span> Aim for 7-9 hours of sleep per night to allow your body to repair and rejuvenate.</li>
+                        <li><span>Hydration:</span> Drink at least 8 cups (2 liters) of water daily to keep your body functioning optimally.</li>
+                        <li><span>Regular Check-ups:</span> See your healthcare provider regularly for preventive care and early detection of potential issues.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
     <footer>
         <p>&copy; 2024 Team H.E.L.P Website. All Rights Reserved.</p>
     </footer>
+    <div class="floating-button-container">
+        <span class="floating-button-text">Talk to Sara</span>
+        <a href="/diagnose" class="floating-button">
+            <img src="{{ url_for('static', filename='img/SaraPic.jpg') }}" alt="Sara" class="floating-button-image">
+        </a>
+    </div> 
 </body>
 </html>
- 
